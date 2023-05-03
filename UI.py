@@ -150,6 +150,7 @@ if __name__ == "__main__":
         while run:
             start = timer()
             _, frame_in = camera.read()
+            st.image(frame_in)
             frame = cv2.cvtColor(frame_in, cv2.COLOR_BGR2RGB)
             frame2 = cv2.cvtColor(frame_in, cv2.COLOR_BGR2RGB)
             mask_label = {0: 'MASK INCORRECT', 1: 'MASK', 2: 'NO MASK'}

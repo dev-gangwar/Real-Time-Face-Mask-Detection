@@ -1,4 +1,5 @@
-opencv-python
+opencv
+python
 importlib-metadata==6.1.0
 ipykernel==6.21.1
 ipython==8.9.0

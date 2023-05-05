@@ -31,6 +31,7 @@ if __name__ == "__main__":
 
     with tab1:
         st.header("Intoduction")
+        st.write("Artificial intelligence enables image and video-based detection algorithms that can accurately detect an object and determine whether the human is wearing or not wearing a mask. Face mask identification can be done with diverse datasets utilizing deep learning and machine learning approaches such as support vector machines and decision trees. The main purpose of this project is to develop a Face mask detection model.Their are multiple object detection models available on the Internet for selecting the best model we have developed our custom model and trained two additional models using the EffNet - B0V2 architecture and Efficient Net Architecture for better comparison. Using the dataset available on Kaggle, the model was trained and tested.")
     with tab2:
         st.write("Please Visit our Kaggle Account Before Downloading the Notebook...")
         goto = st.button("Goto ...")

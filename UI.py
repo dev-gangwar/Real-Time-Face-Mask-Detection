@@ -9,7 +9,7 @@ import tensorflow as tf
 from tensorflow import keras
 import webbrowser
 import base64
-
+from bokeh.models.widgets import Div
 def displayPDF(file):
     # Opening file from file path
     with open(file, "rb") as f:
@@ -38,7 +38,10 @@ if __name__ == "__main__":
         st.write("Please Visit our Kaggle Account Before Downloading the Notebook...")
         goto = st.button("Goto ...")
         if goto:
-            webbrowser.open("https://www.kaggle.com/code/aryankansal2019/face-mask-detection-classsifier-using-cnn")
+            js = "window.open('https://www.kaggle.com/code/aryankansal2019/face-mask-detection-classsifier-using-cnn')"  # New tab or window
+            html = '<img src onerror="{}">'.format(js)
+            div = Div(text=html)
+            st.bokeh_chart(div)
         st.write("Download the Kaggle Notebook of our Face Mask Detection Project.")
 
         st.download_button('Download Notebook',
@@ -48,7 +51,7 @@ if __name__ == "__main__":
         st.write("Wanna See our Reseach Paper ?")
         col1, col2 = st.columns(2)
         btn1 = col1.button("View Paper")
-        with open("Research Paper 1.pdf", "rb") as pdf_file:
+        with open("Research Paper.pdf", "rb") as pdf_file:
             PDFbyte = pdf_file.read()
 
         col2.download_button(label="Download Paper",
@@ -56,7 +59,7 @@ if __name__ == "__main__":
                             file_name="ResearchPaper.pdf",
                             mime='application/octet-stream')
         if btn1:
-            displayPDF("Research Paper 1.pdf")
+            displayPDF("Research Paper.pdf")
     with tab4:
         st.write("Wanna See our Report ?")
         col1, col2 = st.columns(2)
@@ -74,7 +77,10 @@ if __name__ == "__main__":
         st.write("View DataSet on Kaggle")
         goto_dataset = st.button("Goto  Dataset")
         if goto_dataset:
-            webbrowser.open("https://www.kaggle.com/datasets/andrewmvd/face-mask-detection")
+            js = "window.open('https://www.kaggle.com/datasets/andrewmvd/face-mask-detection')"  # New tab or window
+            html = '<img src onerror="{}">'.format(js)
+            div = Div(text=html)
+            st.bokeh_chart(div)
     with tab6:
         st.write("Comparision of All three models including Custom, EfficientNet, MobileNet.")
         st.image("output.jpg")

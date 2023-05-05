@@ -58,7 +58,7 @@ if __name__ == "__main__":
         st.write("Wanna See our Report ?")
         col1, col2 = st.columns(2)
         btn1 = col1.button("View Report")
-        with open("Research Paper 1.pdf", "rb") as pdf_file:
+        with open("Report (17).pdf", "rb") as pdf_file:
             PDFbyte = pdf_file.read()
 
         col2.download_button(label="Download Report",
@@ -66,7 +66,7 @@ if __name__ == "__main__":
                             file_name="Report.pdf",
                             mime='application/octet-stream')
         if btn1:
-            displayPDF("Research Paper 1.pdf")
+            displayPDF("Report (17).pdf")
     with tab5:
         st.write("View DataSet on Kaggle")
         goto_dataset = st.button("Goto  Dataset")
@@ -145,27 +145,30 @@ if __name__ == "__main__":
         col1, col2 = st.columns(2)
         FRAME_WINDOW = col1.image([])
         FRAME_WINDOW_OUT = col2.image([])
-        camera = cv2.VideoCapture(0)
-        t = st.empty()
-        while run:
-            start = timer()
-            _, frame_in = camera.read()
-            st.image(frame_in)
-            frame = cv2.cvtColor(frame_in, cv2.COLOR_BGR2RGB)
-            frame2 = cv2.cvtColor(frame_in, cv2.COLOR_BGR2RGB)
-            mask_label = {0: 'MASK INCORRECT', 1: 'MASK', 2: 'NO MASK'}
-            color_label = {0: (0, 255, 255), 1: (0, 255, 0), 2: (255, 0, 0)}
-            cropped_faces, rectangle_lst = extract_face(frame2)
-            if (len(cropped_faces) != 0):
-                for idx, face in enumerate(cropped_faces):
-                    (x, y, w, h) = rectangle_lst[idx]
-                    reshaped_face = np.reshape(face, [1, 35, 35, 3])/255.0
-                    face_result = model_custom.predict(reshaped_face)
-                    cv2.putText(frame2,mask_label[face_result.argmax()],(x, y-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,color_label[face_result.argmax()],2)
-            end = timer()
-            t.markdown(f"Showing the feed with the delay of {timedelta(seconds= end - start)}")
-            FRAME_WINDOW.image(frame, caption=f"Input Feed at {fps}.")
-            FRAME_WINDOW_OUT.image(frame2, caption= f"Output feed at {fps}.")
-            time.sleep(1/dic[fps])
-        else:
-            st.write("Live Feed Stoped !!!😵")
+        try :
+            camera = cv2.VideoCapture(0)
+            t = st.empty()
+            while run:
+                start = timer()
+                _, frame_in = camera.read()
+                st.image(frame_in)
+                frame = cv2.cvtColor(frame_in, cv2.COLOR_BGR2RGB)
+                frame2 = cv2.cvtColor(frame_in, cv2.COLOR_BGR2RGB)
+                mask_label = {0: 'MASK INCORRECT', 1: 'MASK', 2: 'NO MASK'}
+                color_label = {0: (0, 255, 255), 1: (0, 255, 0), 2: (255, 0, 0)}
+                cropped_faces, rectangle_lst = extract_face(frame2)
+                if (len(cropped_faces) != 0):
+                    for idx, face in enumerate(cropped_faces):
+                        (x, y, w, h) = rectangle_lst[idx]
+                        reshaped_face = np.reshape(face, [1, 35, 35, 3])/255.0
+                        face_result = model_custom.predict(reshaped_face)
+                        cv2.putText(frame2,mask_label[face_result.argmax()],(x, y-10),cv2.FONT_HERSHEY_SIMPLEX,0.5,color_label[face_result.argmax()],2)
+                end = timer()
+                t.markdown(f"Showing the feed with the delay of {timedelta(seconds= end - start)}")
+                FRAME_WINDOW.image(frame, caption=f"Input Feed at {fps}.")
+                FRAME_WINDOW_OUT.image(frame2, caption= f"Output feed at {fps}.")
+                time.sleep(1/dic[fps])
+            else:
+                st.write("Live Feed Stoped !!!😵")
+        except:
+            st.header("Sorry!!! Error while loading the Cam.") 

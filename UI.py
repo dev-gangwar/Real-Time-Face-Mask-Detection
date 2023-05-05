@@ -31,7 +31,9 @@ if __name__ == "__main__":
 
     with tab1:
         st.header("Intoduction")
-        st.write("Artificial intelligence enables image and video-based detection algorithms that can accurately detect an object and determine whether the human is wearing or not wearing a mask. Face mask identification can be done with diverse datasets utilizing deep learning and machine learning approaches such as support vector machines and decision trees. The main purpose of this project is to develop a Face mask detection model.Their are multiple object detection models available on the Internet for selecting the best model we have developed our custom model and trained two additional models using the EffNet - B0V2 architecture and Efficient Net Architecture for better comparison. Using the dataset available on Kaggle, the model was trained and tested.")
+        st.subheader("Hello! :smiley:")
+        st.write("Welcome to our Webapp. This is a webapp for our project - Real Time Face Mask Detection in this project we have tried to compare and implement the best CNN Model with our Custom made model. You must have seen many Real Time Face Mask Detection Project and I agree it is a very common topic to work with as of COVID situation and I am not saying ours is different from them. It is just our knowledge we have tried to expand through this project. So that we can gain something and also can contribute to the cause.")
+        st.write("We can also train our Custom model on any other dataset and can view results for the better understanding.")
     with tab2:
         st.write("Please Visit our Kaggle Account Before Downloading the Notebook...")
         goto = st.button("Goto ...")
